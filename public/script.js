@@ -27,12 +27,24 @@ window.addEventListener("DOMContentLoaded", evt => {
     fetchURL(url)
       .then(function(data) {
         console.log(data);
+     
         // var iframe = document.getElementById("website");
         // if (iframe && iframe.contentWindow) {
         //   iframe.contentWindow.postMessage(event.target.value, "*");
         // }
-        var iframe = document.createElement("iframe");
-        document.body.appendChild(iframe);
+
+        // clean up if exists
+        const existing = docucument.querySelector("#website");
+        if (existing) {
+          document.querySelector("#data").removeChild(iframe);
+        }
+
+        // create new
+        const iframe = document.createElement("iframe");
+        iframe.setAttribute("width", "800");
+        iframe.setAttribute("height", "400");
+        iframe.setAttribute("id", "website");
+        document.querySelector("#site-iframe").appendChild(iframe);
         iframe.contentWindow.document.open();
         iframe.contentWindow.document.write(data);
         iframe.contentWindow.document.close();
