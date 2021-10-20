@@ -27,7 +27,7 @@ window.addEventListener("DOMContentLoaded", evt => {
     fetchURL(url)
       .then(function(data) {
         console.log(data);
-     
+
         // var iframe = document.getElementById("website");
         // if (iframe && iframe.contentWindow) {
         //   iframe.contentWindow.postMessage(event.target.value, "*");
@@ -39,7 +39,12 @@ window.addEventListener("DOMContentLoaded", evt => {
           document.querySelector("#data").removeChild(existing);
         }
 
-        // create new
+        const existingText = document.querySelector("#text");
+        if (existingText) {
+          document.querySelector("#data").removeChild(existingText);
+        }
+
+        // create new iframe
         const iframe = document.createElement("iframe");
         iframe.setAttribute("width", "800");
         iframe.setAttribute("height", "400");
@@ -48,8 +53,14 @@ window.addEventListener("DOMContentLoaded", evt => {
         iframe.contentWindow.document.open();
         iframe.contentWindow.document.write(data);
         iframe.contentWindow.document.close();
-        // iframe.src = 'data:text/html;charset=utf-8,' + encodeURI(data);
-        // document.body.appendChild(iframe);
+
+        // create new text area
+        const textArea = document.createElement("textarea");
+        textArea.setAttribute("id", "text");
+        textArea.setAttribute("rows", 20);
+        textArea.setAttribute("cols", 80);
+        textArea.value = data;
+        document.querySelector("#data").appendChild(textArea);
       })
       .catch(error => console.log(error));
   };

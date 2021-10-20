@@ -23,3 +23,7 @@ video {
   height: auto;
   max-width: 100%;
 }
+
+iframe, textarea {
+  display: block;
+}
