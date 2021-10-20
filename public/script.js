@@ -15,31 +15,28 @@
 //   false
 // )
 
-const  fetchURL =  async (url)=>{
-  try {
-  const response = await fetch(url, {
-    method: 'GET', 
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({"url":url});
-  });
-  return response.json(); 
-}
-} catch (error) {
-  console.log("error fetching")
-}
-}
+window.addEventListener("DOMContentLoaded", evt => {
+  const fetchURL = async url => {
+    const response = await fetch("/fetchURL", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ url: url })
+    });
+    return response.json();
+  };
 
-const handleSubmit = (event){
-  event.preventDefault();
-  const url = event.target.elements.url.value
-  fetchURL(url)
+  const handleSubmit = event => {
+    event.preventDefault();
+    const url = event.target.elements.url.value;
+    fetchURL(url)
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(error => console.log(error));
+  };
 
-.then(function(response) {
-  console.log( response)
+  const form = document.querySelector("#url-submit");
+  form.addEventListener("submit", handleSubmit);
 });
-}
-
-const form = document.getElementById('form');
-form.addEventListener('submit', handleSubmit);
