@@ -35,6 +35,15 @@ fastify.get("/", function(request, reply) {
   reply.view("/src/pages/index.hbs", params);
 });
 
+fastify.get("/cldapi", function(request, reply) {
+  // params is an object we'll pass to our handlebars template
+  let params = {
+    greeting: "Cloudinary API"
+  };
+  // request.query.paramName <-- a querystring example
+  reply.view("/src/pages/index.hbs", params);
+});
+
 fastify.get("/fetchURL", function(request, reply) {
   // params is an object we'll pass to our handlebars template
   // console.log(request);
