@@ -26,7 +26,7 @@ window.addEventListener("DOMContentLoaded", evt => {
     const url = event.target.elements.url.value;
     fetchURL(url)
       .then(function(data) {
-        console.log(data);
+        // console.log(data);
 
         // var iframe = document.getElementById("website");
         // if (iframe && iframe.contentWindow) {
@@ -53,6 +53,8 @@ window.addEventListener("DOMContentLoaded", evt => {
         iframe.contentWindow.document.open();
         iframe.contentWindow.document.write(data);
         iframe.contentWindow.document.close();
+      
+      document.querySelector("#data").appendChild(document.createElement("br"));
 
         // create new text area
         const textArea = document.createElement("textarea");
