@@ -46,34 +46,32 @@ fastify.get("/fetchURL", function(request, reply) {
   // console.log(request);
   console.log("qs", request.query.url);
 
-  if (request.query.url) {
-    // use https
-    let url =
-      "https://" + (result = request.query.url.replace(/(^\w+:|^)\/\//, ""));
-    console.log("url", url);
-
-    if (url.startsWith("www")) {
-      axios({
-        method: "get",
-        url: request.query.url
-      })
-        .then(response => {
-          console.log(response.data);
-          let params = {
-            greeting: "Hello Node!",
-            urlResponse: response.data
-          };
-          reply.view("/src/pages/index.hbs", params);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    } else {
-      console.log("needs to start with www");
-    }
-  } else {
-    console.log("need a url ");
+  if (!request.query.url) {
+    console.log("need a url");
   }
+
+  // use https
+  let url = request.query.url.replace(/(^\w+:|^)\/\//, "");
+  console.log("url", url);
+
+  if (!url.startsWith("www")) {
+    console.log("need a www");
+  }
+  axios({
+    method: "get",
+    url: request.query.url
+  })
+    .then(response => {
+      console.log(response.data);
+      let params = {
+        greeting: "Hello Node!",
+        urlResponse: response.data
+      };
+      reply.view("/src/pages/index.hbs", params);
+    })
+    .catch(error => {
+      console.log(error);
+    });
 });
 
 // A POST route to handle form submissions
