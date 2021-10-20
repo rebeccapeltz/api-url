@@ -1,5 +1,22 @@
 const path = require("path");
-const fetch = require("node-fetch");
+var http = require('http');
+
+var options = {
+  host: 'www.rgoogle.com'
+};
+
+callback = function(response) {
+  var str = '';
+
+  //another chunk of data has been received, so append it to `str`
+  response.on('data', function (chunk) {
+    str += chunk;
+  });
+
+  //the whole response has been received, so we just print it out here
+  response.on('end', function () {
+    console.log(str);
+  });
 
 // Require the fastify framework and instantiate it
 const fastify = require("fastify")({
