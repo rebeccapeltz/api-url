@@ -63,11 +63,7 @@ fastify.get("/fetchURL", function(request, reply) {
   })
     .then(response => {
       console.log(response.data);
-      let params = {
-        greeting: "Hello Node!",
-        urlResponse: response.data
-      };
-      reply.view("/src/pages/index.hbs", params);
+       reply.send(response.data)
     })
     .catch(error => {
       console.log(error);
