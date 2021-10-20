@@ -58,6 +58,11 @@ fastify.get("/fetchURL", function(request, reply) {
     })
       .then(response => {
         console.log(response.data);
+      let params = {
+    greeting: "Hello Node!",
+    urlResponse: response.data
+  };
+  reply.view("/src/pages/index.hbs", params);
       })
       .catch(error => {
         console.log(error);
@@ -67,13 +72,7 @@ fastify.get("/fetchURL", function(request, reply) {
   }
 
   
-  let params = {
-    greeting: "Hello Node!",
-    urlResponse: "https://www.google.com"
-  };
-  // request.query.paramName <-- a querystring example
-  console.log("RE-RENDER");
-  reply.view("/src/pages/index.hbs", params);
+  
 });
 
 // A POST route to handle form submissions
