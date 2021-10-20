@@ -7,13 +7,7 @@ const fastify = require("fastify")({
   logger: false
 });
 
-// const fetchURL = async url => {
-//   try {
-//     const result = await fetch(url);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
+
 
 // Setup our static files
 fastify.register(require("fastify-static"), {
@@ -35,7 +29,7 @@ fastify.register(require("point-of-view"), {
 fastify.get("/", function(request, reply) {
   // params is an object we'll pass to our handlebars template
   let params = {
-    greeting: "Hello Node!"
+    greeting: "API's vs URL's"
   };
   // request.query.paramName <-- a querystring example
   reply.view("/src/pages/index.hbs", params);
@@ -70,14 +64,6 @@ fastify.get("/fetchURL", function(request, reply) {
     });
 });
 
-// A POST route to handle form submissions
-// fastify.post("/", function(request, reply) {
-//   let params = {
-//     greeting: "Hello Form!"
-//   };
-//   // request.body.paramName <-- a form post example
-//   reply.view("/src/pages/index.hbs", params);
-// });
 
 // Run the server and report out to the logs
 fastify.listen(process.env.PORT, function(err, address) {
