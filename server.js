@@ -43,11 +43,11 @@ fastify.get("/", function(request, reply) {
 
 fastify.get("/fetchURL", function(request, reply) {
   // params is an object we'll pass to our handlebars template
-  console.log(request);
-  console.log(request.body);
+  // console.log(request);
+  console.log("qs", request.query.url);
 
   let options = {
-    host: "www.rgoogle.com"
+    host: request.query.url
   };
 
   let callback = function(response) {
@@ -60,7 +60,7 @@ fastify.get("/fetchURL", function(request, reply) {
 
     //the whole response has been received, so we just print it out here
     response.on("end", function() {
-      console.log(str);
+      // console.log("fetchedURL", str);
     });
   };
 
