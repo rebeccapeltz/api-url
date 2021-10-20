@@ -1,22 +1,5 @@
 const path = require("path");
-var http = require('http');
-
-var options = {
-  host: 'www.rgoogle.com'
-};
-
-callback = function(response) {
-  var str = '';
-
-  //another chunk of data has been received, so append it to `str`
-  response.on('data', function (chunk) {
-    str += chunk;
-  });
-
-  //the whole response has been received, so we just print it out here
-  response.on('end', function () {
-    console.log(str);
-  });
+var http = require("http");
 
 // Require the fastify framework and instantiate it
 const fastify = require("fastify")({
@@ -24,13 +7,13 @@ const fastify = require("fastify")({
   logger: false
 });
 
-const fetchURL = async url => {
-  try {
-    const result = await fetch(url);
-  } catch (err) {
-    console.log(err);
-  }
-};
+// const fetchURL = async url => {
+//   try {
+//     const result = await fetch(url);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
 
 // Setup our static files
 fastify.register(require("fastify-static"), {
@@ -61,6 +44,27 @@ fastify.get("/", function(request, reply) {
 fastify.get("/fetchURL", function(request, reply) {
   // params is an object we'll pass to our handlebars template
   console.log(request);
+  console.log(request.body);
+
+  let options = {
+    host: "www.rgoogle.com"
+  };
+
+  let callback = function(response) {
+    var str = "";
+
+    //another chunk of data has been received, so append it to `str`
+    response.on("data", function(chunk) {
+      str += chunk;
+    });
+
+    //the whole response has been received, so we just print it out here
+    response.on("end", function() {
+      console.log(str);
+    });
+  };
+
+  http.request(options, callback).end();
 
   let params = {
     greeting: "Hello Node!"
