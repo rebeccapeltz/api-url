@@ -31,7 +31,7 @@ window.addEventListener("DOMContentLoaded", evt => {
 
         // create new iframe with header
         const h2website = document.createElement("h2");
-      h2website.add
+        h2website.setAttribute("id", "h2website");
         h2website.innerHTML = "Browser";
         document.querySelector("#data").appendChild(h2website);
 
@@ -49,10 +49,11 @@ window.addEventListener("DOMContentLoaded", evt => {
           .appendChild(document.createElement("br"));
 
         // create new text area with header
-      const h2website = document.createElement("h2");
-        h2website.innerHTML = "Text";
-        document.querySelector("#data").appendChild(h2website);
-      
+        const h2text = document.createElement("h2");
+        h2text.setAttribute("id", "h2text");
+        h2text.innerHTML = "Text";
+        document.querySelector("#data").appendChild(h2text);
+
         const textArea = document.createElement("textarea");
         textArea.setAttribute("id", "text");
         textArea.setAttribute("rows", 20);
