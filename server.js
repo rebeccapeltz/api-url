@@ -41,6 +41,17 @@ fastify.get("/", function(request, reply) {
   reply.view("/src/pages/index.hbs", params);
 });
 
+fastify.get("/fetchURL", function(request, reply) {
+  // params is an object we'll pass to our handlebars template
+  console.log(request);
+
+  let params = {
+    greeting: "Hello Node!"
+  };
+  // request.query.paramName <-- a querystring example
+  reply.view("/src/pages/index.hbs", params);
+});
+
 // A POST route to handle form submissions
 fastify.post("/", function(request, reply) {
   let params = {
