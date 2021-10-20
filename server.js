@@ -68,20 +68,22 @@ fastify.get("/fetchURL", function(request, reply) {
 
   
   let params = {
-    greeting: "Hello Node!"
+    greeting: "Hello Node!",
+    urlResponse: "https://www.google.com"
   };
   // request.query.paramName <-- a querystring example
+  console.log("RE-RENDER");
   reply.view("/src/pages/index.hbs", params);
 });
 
 // A POST route to handle form submissions
-fastify.post("/", function(request, reply) {
-  let params = {
-    greeting: "Hello Form!"
-  };
-  // request.body.paramName <-- a form post example
-  reply.view("/src/pages/index.hbs", params);
-});
+// fastify.post("/", function(request, reply) {
+//   let params = {
+//     greeting: "Hello Form!"
+//   };
+//   // request.body.paramName <-- a form post example
+//   reply.view("/src/pages/index.hbs", params);
+// });
 
 // Run the server and report out to the logs
 fastify.listen(process.env.PORT, function(err, address) {
