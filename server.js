@@ -1,10 +1,19 @@
 const path = require("path");
+const fetch = require("node-fetch");
 
 // Require the fastify framework and instantiate it
 const fastify = require("fastify")({
   // set this to true for detailed logging:
   logger: false
 });
+
+const fetchURL = async url => {
+  try {
+    const result = await fetch(url);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 // Setup our static files
 fastify.register(require("fastify-static"), {
