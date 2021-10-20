@@ -17,13 +17,7 @@
 
 window.addEventListener("DOMContentLoaded", evt => {
   const fetchURL = async url => {
-    const response = await fetch("/fetchURL", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ url: url })
-    });
+    const response = await axios.get("/fetchURL", { params: { url: url} });
     return response.json();
   };
 
