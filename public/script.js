@@ -16,14 +16,25 @@ window.addEventListener("DOMContentLoaded", evt => {
         const existing = document.querySelector("#website");
         if (existing) {
           document.querySelector("#data").removeChild(existing);
+          document
+            .querySelector("#data")
+            .removeChild(document.querySelector("#h2website"));
         }
 
         const existingText = document.querySelector("#text");
         if (existingText) {
           document.querySelector("#data").removeChild(existingText);
+          document
+            .querySelector("#data")
+            .removeChild(document.querySelector("#h2text"));
         }
 
-        // create new iframe
+        // create new iframe with header
+        const h2website = document.createElement("h2");
+      h2website.add
+        h2website.innerHTML = "Browser";
+        document.querySelector("#data").appendChild(h2website);
+
         const iframe = document.createElement("iframe");
         iframe.setAttribute("width", "800");
         iframe.setAttribute("height", "400");
@@ -37,7 +48,11 @@ window.addEventListener("DOMContentLoaded", evt => {
           .querySelector("#data")
           .appendChild(document.createElement("br"));
 
-        // create new text area
+        // create new text area with header
+      const h2website = document.createElement("h2");
+        h2website.innerHTML = "Text";
+        document.querySelector("#data").appendChild(h2website);
+      
         const textArea = document.createElement("textarea");
         textArea.setAttribute("id", "text");
         textArea.setAttribute("rows", 20);
