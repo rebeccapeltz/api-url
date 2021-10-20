@@ -1,5 +1,8 @@
 const path = require("path");
-var https = require("https");
+// var https = require("https");
+const axios = require('axios').default;
+
+
 
 // Require the fastify framework and instantiate it
 const fastify = require("fastify")({
@@ -46,28 +49,29 @@ fastify.get("/fetchURL", function(request, reply) {
   // console.log(request);
   console.log("qs", request.query.url);
 
+  // strip http:, https:
   let url = (result = request.query.url.replace(/(^\w+:|^)\/\//, ""));
   console.log("url", url);
 
-  let options = {
-    host: url
-  };
+//   let options = {
+//     host: url
+//   };
 
-  let callback = function(response) {
-    var str = "";
+//   let callback = function(response) {
+//     var str = "";
 
-    //another chunk of data has been received, so append it to `str`
-    response.on("data", function(chunk) {
-      str += chunk;
-    });
+//     //another chunk of data has been received, so append it to `str`
+//     response.on("data", function(chunk) {
+//       str += chunk;
+//     });
 
-    //the whole response has been received, so we just print it out here
-    response.on("end", function() {
-      console.log("fetchedURL", str);
-    });
-  };
+//     //the whole response has been received, so we just print it out here
+//     response.on("end", function() {
+//       console.log("fetchedURL", str);
+//     });
+//   };
 
-  https.request(options, callback).end();
+  // https.request(options, callback).end();
 
   let params = {
     greeting: "Hello Node!"
