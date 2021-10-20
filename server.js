@@ -46,13 +46,14 @@ fastify.get("/fetchURL", function(request, reply) {
   // console.log(request);
   console.log("qs", request.query.url);
 
-  if (request.query.url && request.query.url.startsWith("www")) {
+  if (request.query.url)) {
     // use https
     let url =
       "https://" + (result = request.query.url.replace(/(^\w+:|^)\/\//, ""));
     console.log("url", url);
 
-    axios({
+    if (url.startsWith("www")){
+      axios({
       method: "get",
       url: request.query.url
     })
@@ -67,8 +68,10 @@ fastify.get("/fetchURL", function(request, reply) {
       .catch(error => {
         console.log(error);
       });
+    }
+    
   } else {
-    console.log("need a url that starts with www");
+    console.log("need a url ");
   }
 
   
