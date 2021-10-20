@@ -1,20 +1,3 @@
-// function sendToFrame(event) {
-//   var iframe = document.getElementById("website")
-//   if (iframe && iframe.contentWindow) {
-//     iframe.contentWindow.postMessage(event.target.value, "*")
-//   }
-// }
-
-// window.addEventListener(
-//   "message",
-//   function (event) {
-//     if (event.origin === window.location.origin) {
-//       $("#my-message").text(event.data)
-//     }
-//   },
-//   false
-// )
-
 window.addEventListener("DOMContentLoaded", evt => {
   const fetchURL = async url => {
     const response = await axios.get("/fetchURL", { params: { url: url } });
@@ -25,13 +8,9 @@ window.addEventListener("DOMContentLoaded", evt => {
     event.preventDefault();
     const url = event.target.elements.url.value;
     fetchURL(url)
-      .then(function(data) {
-        // console.log(data);
-
-        // var iframe = document.getElementById("website");
-        // if (iframe && iframe.contentWindow) {
-        //   iframe.contentWindow.postMessage(event.target.value, "*");
-        // }
+      .then(function(resp) {
+        const data =
+          typeof resp === "object" ? JSON.stringify(resp, 0, 2) : resp;
 
         // clean up if exists
         const existing = document.querySelector("#website");
@@ -53,14 +32,16 @@ window.addEventListener("DOMContentLoaded", evt => {
         iframe.contentWindow.document.open();
         iframe.contentWindow.document.write(data);
         iframe.contentWindow.document.close();
-      
-      document.querySelector("#data").appendChild(document.createElement("br"));
+
+        document
+          .querySelector("#data")
+          .appendChild(document.createElement("br"));
 
         // create new text area
         const textArea = document.createElement("textarea");
         textArea.setAttribute("id", "text");
         textArea.setAttribute("rows", 20);
-        textArea.setAttribute("cols", 80);
+        textArea.setAttribute("cols", 100);
         textArea.value = data;
         document.querySelector("#data").appendChild(textArea);
       })
