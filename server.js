@@ -1,5 +1,5 @@
 const path = require("path");
-var http = require("http");
+var https = require("https");
 
 // Require the fastify framework and instantiate it
 const fastify = require("fastify")({
@@ -46,8 +46,11 @@ fastify.get("/fetchURL", function(request, reply) {
   // console.log(request);
   console.log("qs", request.query.url);
 
+  let url = (result = request.query.url.replace(/(^\w+:|^)\/\//, ""));
+  console.log("url", url);
+
   let options = {
-    host: request.query.url
+    host: url
   };
 
   let callback = function(response) {
@@ -60,11 +63,11 @@ fastify.get("/fetchURL", function(request, reply) {
 
     //the whole response has been received, so we just print it out here
     response.on("end", function() {
-      // console.log("fetchedURL", str);
+      console.log("fetchedURL", str);
     });
   };
 
-  http.request(options, callback).end();
+  https.request(options, callback).end();
 
   let params = {
     greeting: "Hello Node!"
