@@ -34,9 +34,9 @@ window.addEventListener("DOMContentLoaded", evt => {
         // }
 
         // clean up if exists
-        const existing = docucument.querySelector("#website");
+        const existing = document.querySelector("#website");
         if (existing) {
-          document.querySelector("#data").removeChild(iframe);
+          document.querySelector("#data").removeChild(existing);
         }
 
         // create new
@@ -44,7 +44,7 @@ window.addEventListener("DOMContentLoaded", evt => {
         iframe.setAttribute("width", "800");
         iframe.setAttribute("height", "400");
         iframe.setAttribute("id", "website");
-        document.querySelector("#site-iframe").appendChild(iframe);
+        document.querySelector("#data").appendChild(iframe);
         iframe.contentWindow.document.open();
         iframe.contentWindow.document.write(data);
         iframe.contentWindow.document.close();
