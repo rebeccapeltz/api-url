@@ -143,7 +143,7 @@ window.addEventListener("DOMContentLoaded", evt => {
 
     console.log("fullURL", fullURL);
 
-    postURL(url)
+    postURL(fullURL)
       .then(function(resp) {
         const data =
           typeof resp === "object" ? JSON.stringify(resp, 0, 2) : resp;
