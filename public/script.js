@@ -129,12 +129,12 @@ window.addEventListener("DOMContentLoaded", evt => {
     // let cldUrl = "CLOUDINARY_URL=cloudinary://apikeyapisecret@cloudname";
     const credentials = parseCldUrl(cldurl);
     //replace credentials in api url
-    url.replace("API_KEY", credentials[1]);
-    url.replace("API_SECRET", credentials[2]);
-    url.replace("CLOUDINARY_URL", credentials[3]);
+    const fullURL = url
+      .replace("API_KEY", credentials[1])
+      .replace("API_SECRET", credentials[2])
+      .replace("CLOUDINARY_URL", credentials[3]);
 
-    console.log("url", url);
-
+    console.log("fullURL", fullURL);
 
     // fetchURL(url)
     //   .then(function(resp) {
