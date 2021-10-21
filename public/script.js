@@ -3,10 +3,11 @@ window.addEventListener("DOMContentLoaded", evt => {
     const response = await axios.get("/fetchURL", { params: { url: url } });
     return response.data;
   };
-  
-  const parseCldUrl= (cldurl) =>{
-     let re = new RegExp('CLOUDINARY_URL=cloudinary://(\\S+):(\\S+)@(\\S+)');
-  }
+
+  const parseCldUrl = cldurl => {
+    let re = new RegExp("CLOUDINARY_URL=cloudinary://(\\S+):(\\S+)@(\\S+)");
+    return re.exec(cldurl);
+  };
 
   const updateDOM = data => {
     // clean up if exists
@@ -119,17 +120,29 @@ window.addEventListener("DOMContentLoaded", evt => {
 
   const handleSubmit2 = event => {
     event.preventDefault();
+    // get url
     const url = event.target.elements.url.value;
-    
-    
-    
-    fetchURL(url)
-      .then(function(resp) {
-        const data =
-          typeof resp === "object" ? JSON.stringify(resp, 0, 2) : resp;
-        updateDOM(data);
-      })
-      .catch(error => console.log(error));
+    // get cloudinary url
+    // const cldurl = event.target.elements.cldurl.value;
+
+    //get cld url from form
+    let cldUrl = "CLOUDINARY_URL=cloudinary://apikeyapisecret@cloudname";
+    const credentials = parseCldUrl(cldUrl);
+    //replace credentials in api url
+    url.replace("API_KEY", credentials[1]);
+    url.replace("API_SECRET", credentials[2]);
+    url.replace("CLOUDINARY_URL", credentials[3]);
+
+    console.log("url", url);
+
+
+    // fetchURL(url)
+    //   .then(function(resp) {
+    //     const data =
+    //       typeof resp === "object" ? JSON.stringify(resp, 0, 2) : resp;
+    //     updateDOM(data);
+    //   })
+    //   .catch(error => console.log(error));
   };
 
   const form1 = document.querySelector("#url-submit");
