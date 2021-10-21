@@ -41,7 +41,7 @@ fastify.get("/cldapi", function(request, reply) {
     greeting: "Cloudinary API"
   };
   // request.query.paramName <-- a querystring example
-  reply.view("/src/pages/index.hbs", params);
+  reply.view("/src/pages/cldapi.hbs", params);
 });
 
 fastify.get("/fetchURL", function(request, reply) {
