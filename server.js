@@ -43,23 +43,17 @@ fastify.get("/cldapi", function(request, reply) {
 });
 
 fastify.post("/fetchURL", function(request, reply) {
-  console.log("body",request.body);
+  // console.log("body",request.body);
   if (!request.body.url) {
     console.log("need a url");
   }
-
-  // reply.send ({msg:"ok"});
-  // use https
-  let url = request.body.url.replace(/(^\w+:|^)\/\//, "");
-  console.log("url", url);
 
   axios({
     method: "get",
     url: request.body.url
   })
     .then(response => {
-      console.log("data",response.data);
-      console.log(response.data);
+      // console.log("data",response.data);
       reply.send(response.data);
     })
     .catch(error => {

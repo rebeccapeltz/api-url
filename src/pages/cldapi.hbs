@@ -20,10 +20,15 @@
       {{ greeting }}
     </h1>
     <p>
-      Try a Cloudinary API
+      Try a Cloudinary API.  The Admin API <strong>/resources</strong> endpoint will return 10 the most
+      recently uploaded assets. <br>
+      You can specify video or image as the last part of the path.
       <ul>
         <li>        
-          resources: https://API_KEY:API_SECRET@api.cloudinary.com/v1_1/CLOUD_NAME/resources/image
+           image resources: https://API_KEY:API_SECRET@api.cloudinary.com/v1_1/CLOUD_NAME/resources/image
+        </li>
+           <li>        
+          video resources: https://API_KEY:API_SECRET@api.cloudinary.com/v1_1/CLOUD_NAME/resources/video
         </li>
         
     </ul>
@@ -37,7 +42,7 @@
       <div>
         <input name="url" placeholder="Enter URL" size="100" value="https://API_KEY:API_SECRET@api.cloudinary.com/v1_1/CLOUD_NAME/resources/image" />
         <br> 
-        <input name="cldurl" type="password" placeholder="Paste CLOUDINARY_URL" value="CLOUDINARY_URL=cloudinary://apikey:apisecret@cloudname" size="100"/>
+        <input name="cldurl" type="password" placeholder="Paste CLOUDINARY_URL" value="" size="100"/>
         <br>
         <button type="submit">
           Submit
