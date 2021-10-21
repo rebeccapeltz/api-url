@@ -44,10 +44,36 @@ fastify.get("/cldapi", function(request, reply) {
   reply.view("/src/pages/cldapi.hbs", params);
 });
 
+fastify.post("/fetchURL", function(request, reply) {
+  console.log(request.body)
+  if (!request.query.url) {
+    console.log("need a url");
+  }
+
+  reply.send ({msg:"ok"});
+  // use https
+//   let url = request.query.url.replace(/(^\w+:|^)\/\//, "");
+//   console.log("url", url);
+
+//   if (!url.startsWith("www")) {
+//     console.log("need a www");
+//   }
+//   axios({
+//     method: "get",
+//     url: request.query.url
+//   })
+//     .then(response => {
+//       console.log(response.data);
+//        reply.send(response.data)
+//     })
+//     .catch(error => {
+//       console.log(error);
+//     });
+});
+
+
 fastify.get("/fetchURL", function(request, reply) {
-  // params is an object we'll pass to our handlebars template
-  // console.log(request);
-  console.log("qs", request.query.url);
+  // console.log("qs", request.query.url);
 
   if (!request.query.url) {
     console.log("need a url");

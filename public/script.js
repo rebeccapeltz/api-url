@@ -1,7 +1,14 @@
 window.addEventListener("DOMContentLoaded", evt => {
-  const fetchURL = async url => {
+  const getURL = async url => {
     const response = await axios.get("/fetchURL", { params: { url: url } });
     return response.data;
+  };
+
+  const postURL = async url => {
+    const response = await axios.post("/fetchURL", {
+      url: url
+    });
+     return response.data;
   };
 
   const parseCldUrl = cldurl => {
@@ -61,7 +68,7 @@ window.addEventListener("DOMContentLoaded", evt => {
   const handleSubmit1 = event => {
     event.preventDefault();
     const url = event.target.elements.url.value;
-    fetchURL(url)
+    getURL(url)
       .then(function(resp) {
         const data =
           typeof resp === "object" ? JSON.stringify(resp, 0, 2) : resp;
@@ -136,13 +143,13 @@ window.addEventListener("DOMContentLoaded", evt => {
 
     console.log("fullURL", fullURL);
 
-    // fetchURL(url)
-    //   .then(function(resp) {
-    //     const data =
-    //       typeof resp === "object" ? JSON.stringify(resp, 0, 2) : resp;
-    //     updateDOM(data);
-    //   })
-    //   .catch(error => console.log(error));
+    fetchURL(url)
+      .then(function(resp) {
+        const data =
+          typeof resp === "object" ? JSON.stringify(resp, 0, 2) : resp;
+        updateDOM(data);
+      })
+      .catch(error => console.log(error));
   };
 
   const form1 = document.querySelector("#url-submit");
