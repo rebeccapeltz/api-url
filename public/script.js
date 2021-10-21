@@ -123,11 +123,11 @@ window.addEventListener("DOMContentLoaded", evt => {
     // get url
     const url = event.target.elements.url.value;
     // get cloudinary url
-    // const cldurl = event.target.elements.cldurl.value;
+    const cldurl = event.target.elements.cldurl.value;
 
     //get cld url from form
-    let cldUrl = "CLOUDINARY_URL=cloudinary://apikeyapisecret@cloudname";
-    const credentials = parseCldUrl(cldUrl);
+    // let cldUrl = "CLOUDINARY_URL=cloudinary://apikeyapisecret@cloudname";
+    const credentials = parseCldUrl(cldurl);
     //replace credentials in api url
     url.replace("API_KEY", credentials[1]);
     url.replace("API_SECRET", credentials[2]);
