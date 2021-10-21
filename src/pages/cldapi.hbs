@@ -10,6 +10,7 @@
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css" /> 
    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
     <script src="script.js"></script>
   </head>
   <body>
@@ -21,7 +22,7 @@
       Try a Cloudinary API
       <ul>
         <li>        
-          resources: https://<API_KEY>:<API_SECRET>@api.cloudinary.com/v1_1/<CLOUD_NAME>/resources/image
+          resources: https://&lt;API_KEY&gt;:&lt;PI_SECRET&gt;@api.cloudinary.com/v1_1/%ltCLOUD_NAME>/resources/image
         </li>
         
     </ul>
@@ -35,8 +36,7 @@
       <div>
         <input name="url" placeholder="Enter URL" size="50" />
         <br>
-        <label>Paste CLOUDINARY_URL</label>
-        <input type="password" placeholder="Paste CLOUDINARY_URL"/>
+        <input type="password" placeholder="Paste CLOUDINARY_URL" size="50"/>
         <br>
         <button type="submit">
           Submit
