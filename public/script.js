@@ -8,7 +8,7 @@ window.addEventListener("DOMContentLoaded", evt => {
     const response = await axios.post("/fetchURL", {
       url: url
     });
-     return response.data;
+    return response.data;
   };
 
   const parseCldUrl = cldurl => {
@@ -139,11 +139,11 @@ window.addEventListener("DOMContentLoaded", evt => {
     const fullURL = url
       .replace("API_KEY", credentials[1])
       .replace("API_SECRET", credentials[2])
-      .replace("CLOUDINARY_URL", credentials[3]);
+      .replace("CLOUD_NAME", credentials[3]);
 
     console.log("fullURL", fullURL);
 
-    fetchURL(url)
+    postURL(url)
       .then(function(resp) {
         const data =
           typeof resp === "object" ? JSON.stringify(resp, 0, 2) : resp;

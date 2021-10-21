@@ -7,8 +7,6 @@ const fastify = require("fastify")({
   logger: false
 });
 
-
-
 // Setup our static files
 fastify.register(require("fastify-static"), {
   root: path.join(__dirname, "public"),
@@ -45,32 +43,29 @@ fastify.get("/cldapi", function(request, reply) {
 });
 
 fastify.post("/fetchURL", function(request, reply) {
-  console.log(request.body)
-  if (!request.query.url) {
+  console.log("body",request.body);
+  if (!request.body.url) {
     console.log("need a url");
   }
 
-  reply.send ({msg:"ok"});
+  // reply.send ({msg:"ok"});
   // use https
-//   let url = request.query.url.replace(/(^\w+:|^)\/\//, "");
-//   console.log("url", url);
+  let url = request.body.url.replace(/(^\w+:|^)\/\//, "");
+  console.log("url", url);
 
-//   if (!url.startsWith("www")) {
-//     console.log("need a www");
-//   }
-//   axios({
-//     method: "get",
-//     url: request.query.url
-//   })
-//     .then(response => {
-//       console.log(response.data);
-//        reply.send(response.data)
-//     })
-//     .catch(error => {
-//       console.log(error);
-//     });
+  axios({
+    method: "get",
+    url: request.body.url
+  })
+    .then(response => {
+      console.log("data",response.data);
+      console.log(response.data);
+      reply.send(response.data);
+    })
+    .catch(error => {
+      console.log(error);
+    });
 });
-
 
 fastify.get("/fetchURL", function(request, reply) {
   // console.log("qs", request.query.url);
@@ -92,13 +87,12 @@ fastify.get("/fetchURL", function(request, reply) {
   })
     .then(response => {
       console.log(response.data);
-       reply.send(response.data)
+      reply.send(response.data);
     })
     .catch(error => {
       console.log(error);
     });
 });
-
 
 // Run the server and report out to the logs
 fastify.listen(process.env.PORT, function(err, address) {
