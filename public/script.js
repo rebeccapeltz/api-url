@@ -3,6 +3,10 @@ window.addEventListener("DOMContentLoaded", evt => {
     const response = await axios.get("/fetchURL", { params: { url: url } });
     return response.data;
   };
+  
+  const parseCldUrl= (cldurl) =>{
+     let re = new RegExp('CLOUDINARY_URL=cloudinary://(\\S+):(\\S+)@(\\S+)');
+  }
 
   const updateDOM = data => {
     // clean up if exists
