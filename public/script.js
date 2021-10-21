@@ -100,6 +100,7 @@ window.addEventListener("DOMContentLoaded", evt => {
         const data =
           typeof resp === "object" ? JSON.stringify(resp, 0, 2) : resp;
         updateDOM(data);
+        document.querySelector("#cldurl").value = "";
       })
       .catch(error => console.log(error));
   };

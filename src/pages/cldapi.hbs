@@ -22,7 +22,7 @@
     <p>
       Try a Cloudinary API.  The Admin API <strong>/resources</strong> endpoint will return 10 the most
       recently uploaded assets. <br>
-      You can specify video or image as the last part of the path.
+      You can specify <strong>video</strong> or <strong>image</strong> as the last part of the path.
       <ul>
         <li>        
            image resources: https://API_KEY:API_SECRET@api.cloudinary.com/v1_1/CLOUD_NAME/resources/image
@@ -42,7 +42,7 @@
       <div>
         <input name="url" placeholder="Enter URL" size="100" value="https://API_KEY:API_SECRET@api.cloudinary.com/v1_1/CLOUD_NAME/resources/image" />
         <br> 
-        <input name="cldurl" type="password" placeholder="Paste CLOUDINARY_URL" value="" size="100"/>
+        <input name="cldurl" id="cldurl" type="password" placeholder="Paste CLOUDINARY_URL" value="" size="100"/>
         <br>
         <button type="submit">
           Submit
